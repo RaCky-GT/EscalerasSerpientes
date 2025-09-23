@@ -1,0 +1,19 @@
+# Archivos de IntelliJ
+.idea/
+*.iml
+
+# Directorios de compilación
+target/
+build/
+
+# Archivos generados
+*.class
+
+# Archivos de logs
+*.log
+
+# Archivos de caché
+.cache/
+
+#Archivo pom.xml
+pom.xml
