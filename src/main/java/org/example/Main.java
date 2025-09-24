@@ -8,7 +8,7 @@ public class Main {
         int option = 0;
         do{
             System.out.println("======== MENU ========");
-            System.out.println(" 1. In1ciar Juego");
+            System.out.println(" 1. Iniciar Juego");
             System.out.println(" 2. Retomar Juego");
             System.out.println(" 3. Generar Reportes");
             System.out.println(" 4. Salir");
@@ -17,6 +17,8 @@ public class Main {
             switch (option){
                 case 1:
                     tableroControlador.dibujar();
+                    tableroControlador.lanzarDado();
+
                     break;
 
             }

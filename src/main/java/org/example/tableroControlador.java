@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Random;
+
 public class tableroControlador {
     public static void dibujar() {
         System.out.println("----------------------------------------");
@@ -32,4 +34,13 @@ public class tableroControlador {
             System.out.println("----------------------------------------");
         }
     }
+
+    public static void lanzarDado(){
+        int min=2;
+        int max=6;
+        Random random = new Random();
+        int valor = random.nextInt(max - min + 1) + min;
+        System.out.println("valor dado: "+valor);
+    }
+
 }
