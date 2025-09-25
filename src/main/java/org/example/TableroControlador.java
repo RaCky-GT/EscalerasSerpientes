@@ -20,12 +20,7 @@ public class TableroControlador {
                     numero = inicioFila + (7 - col);
                     imprimirCasilla(numero, jugador);
                 }
-                /*String celda = String.valueOf(numero);
-                if(numero == jugador.getPosicion()){
-                    celda +=" @";
-                }
 
-                System.out.printf("|%-4s", celda);*/
 
             }
 
