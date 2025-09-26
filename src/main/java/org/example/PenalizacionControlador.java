@@ -3,6 +3,10 @@ package org.example;
 import java.util.Random;
 
 public class PenalizacionControlador {
+    PenalizacionFacil penalizacionFacil = new PenalizacionFacil();
+    PenalizacionIntermedio penalizacionIntermedio = new PenalizacionIntermedio();
+    PenalizacionDificil penalizacionDificil = new PenalizacionDificil();
+
     int [] dist_penalizaciones = new int[32];
     int min=0;
     int max=8;
@@ -43,6 +47,22 @@ public class PenalizacionControlador {
             resultado[i] = dist_penalizaciones[i];
         }
         return resultado;
+    }
+
+    public void tipoPenalizacion(int fila){
+        switch (fila){
+            case 0,1:
+                penalizacionFacil.imprimirPenalizacion();
+
+                break;
+            case 2,3,4:
+                penalizacionIntermedio.imprimirPenalizacion();
+                break;
+            case 5,6,7:
+                penalizacionDificil.imprimirPenalizacion();
+                break;
+        }
+
     }
 
 }

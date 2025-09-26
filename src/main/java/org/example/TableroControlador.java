@@ -2,6 +2,8 @@ package org.example;
 
 public class TableroControlador {
     private int[] penalizaciones;
+    boolean jugadorPenalizacion = false;
+    int filaPenalizacion =0;
 
     public void setPenalizaciones(int[] penalizaciones) {
         this.penalizaciones = penalizaciones;
@@ -9,6 +11,7 @@ public class TableroControlador {
 
     public void dibujar(int jugador) {
         int numero;
+        jugadorPenalizacion = false;
 
         System.out.println("---------------------------------------------------------");
         for (int fila = 7; fila >= 0; fila--) {
@@ -23,7 +26,7 @@ public class TableroControlador {
                     // Fila impar derecha a izquierda
                     numero = inicioFila + (7 - col);
                 }
-                imprimirCasilla(numero, jugador);
+                imprimirCasilla(numero, jugador, fila);
             }
 
             System.out.println("|");
@@ -32,7 +35,7 @@ public class TableroControlador {
     }
 
 
-    public void imprimirCasilla(int posicion, int jugador){
+    public void imprimirCasilla(int posicion, int jugador, int fila){
         String casilla = String.valueOf(posicion);
         boolean casillaPenalizacion = false;
 
@@ -47,13 +50,26 @@ public class TableroControlador {
             casilla += " #";
             if (posicion == jugador) {
                 casilla += " @";
+                filaPenalizacion=fila;
+                jugadorPenalizacion = true;
             }
         } else if (posicion == jugador) {
             casilla += " @";
         }
 
         System.out.printf("|%-6s", casilla);
+
     }
+
+    public boolean getJugadorPenalizacion(){
+        return jugadorPenalizacion;
+    }
+
+    public int getFilaPenalizacion(){
+        return filaPenalizacion;
+    }
+
+
 
 
 
