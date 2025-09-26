@@ -10,7 +10,7 @@ public class TableroControlador {
     public void dibujar(int jugador) {
         int numero;
 
-        System.out.println("----------------------------------------");
+        System.out.println("---------------------------------------------------------");
         for (int fila = 7; fila >= 0; fila--) {
             int inicioFila = fila * 8 + 1;
 
@@ -27,7 +27,7 @@ public class TableroControlador {
             }
 
             System.out.println("|");
-            System.out.println("----------------------------------------");
+            System.out.println("---------------------------------------------------------");
         }
     }
 
@@ -52,7 +52,7 @@ public class TableroControlador {
             casilla += " @";
         }
 
-        System.out.printf("|%-5s", casilla);
+        System.out.printf("|%-6s", casilla);
     }
 
 

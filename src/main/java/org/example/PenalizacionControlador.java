@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Random;
 
-public class Penalizaciones {
+public class PenalizacionControlador {
     int [] dist_penalizaciones = new int[32];
     int min=0;
     int max=8;
