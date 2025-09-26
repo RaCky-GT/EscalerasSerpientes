@@ -1,6 +1,11 @@
 package org.example;
 
 public class TableroControlador {
+    private int[] penalizaciones;
+
+    public void setPenalizaciones(int[] penalizaciones) {
+        this.penalizaciones = penalizaciones;
+    }
 
     public void dibujar(int jugador) {
         int numero;
@@ -14,14 +19,11 @@ public class TableroControlador {
                 if (fila % 2 == 0) {
                     // Fila par izquierda a derecha
                     numero = inicioFila + col;
-                    imprimirCasilla(numero, jugador);
                 } else {
                     // Fila impar derecha a izquierda
                     numero = inicioFila + (7 - col);
-                    imprimirCasilla(numero, jugador);
                 }
-
-
+                imprimirCasilla(numero, jugador);
             }
 
             System.out.println("|");
@@ -30,14 +32,27 @@ public class TableroControlador {
     }
 
 
-
-
     public void imprimirCasilla(int posicion, int jugador){
         String casilla = String.valueOf(posicion);
-        if(posicion == jugador){
-            casilla +=" @";
+        boolean casillaPenalizacion = false;
+
+        for (int i = 0; i < penalizaciones.length; i++) {
+            if (penalizaciones[i] == posicion) {
+                casillaPenalizacion = true;
+                break;
+            }
         }
-        System.out.printf("|%-4s", casilla);
+
+        if (casillaPenalizacion) {
+            casilla += " #";
+            if (posicion == jugador) {
+                casilla += " @";
+            }
+        } else if (posicion == jugador) {
+            casilla += " @";
+        }
+
+        System.out.printf("|%-5s", casilla);
     }
 
 

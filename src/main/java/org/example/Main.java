@@ -9,6 +9,9 @@ public class Main {
         TableroControlador tableroControlador = new TableroControlador();
         Jugador jugador = new Jugador();
         Dado dado = new Dado();
+        Penalizaciones penalizaciones = new Penalizaciones();
+        penalizaciones.distribucinPenalizaciones();
+        int [] listaPenalizaciones = penalizaciones.getPenalizaciones();
 
         int option;
         int continuar;
@@ -37,6 +40,7 @@ public class Main {
                                 int avanzar = dado.getValor();
                                 jugador.moverJugador(avanzar);
                                 System.out.println("posición jugador: "+jugador.getPosicion());
+                                tableroControlador.setPenalizaciones(listaPenalizaciones);
                                 tableroControlador.dibujar(jugador.getPosicion());
                                 break;
                             case 2:
