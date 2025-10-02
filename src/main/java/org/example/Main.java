@@ -16,6 +16,19 @@ public class Main {
         int option;
         int continuar;
         boolean juego_iniciado= true;
+/*
+        //Validar resultados penalizaciones
+        PenalizacionFacil penalizacionFacil = new PenalizacionFacil();
+        System.out.println("------------------------------------------------------------");
+        penalizacionFacil.imprimirOpcionUno();
+        System.out.println("------------------------------------------------------------");
+        penalizacionFacil.imprimirOpcionDos();
+        System.out.println("------------------------------------------------------------");
+        penalizacionFacil.imprimirOpcionTres();
+        System.out.println("------------------------------------------------------------");
+
+ */
+
 
 
 
@@ -44,7 +57,6 @@ public class Main {
                                     dado.lanzarDado();
                                     int avanzar = dado.getValor();
                                     jugador.moverJugador(avanzar);
-                                    System.out.println("posición jugador: "+jugador.getPosicion());
 
                                     tableroControlador.setPenalizaciones(listaPenalizaciones);
                                     tableroControlador.dibujar(jugador.getPosicion());
@@ -55,17 +67,12 @@ public class Main {
                                     }
 
                                     boolean validarPenalizacion = tableroControlador.getJugadorPenalizacion();
-                                    System.out.println("Valor de jugador en penalizacion: "+validarPenalizacion);
                                     if (validarPenalizacion==true){
-                                        System.out.println("Jugador ce en penalización: "+tableroControlador.getJugadorPenalizacion());
-                                        System.out.println("Jugador ce en penalización: "+tableroControlador.getFilaPenalizacion());
                                         penalizacionControlador.tipoPenalizacion(tableroControlador.getFilaPenalizacion());
-                                        System.out.println("Posicion jugador actualizado: "+jugador.getPosicion());
-
                                     }
                                     break;
                                 case 2:
-                                    System.out.println("Regresando al mfdsenu principal...\n");
+                                    System.out.println("Regresando al menu principal...\n");
                                     break;
                             }
 
@@ -75,8 +82,6 @@ public class Main {
                     }else {
                         System.out.println("Se cuenta con un juego iniciado.\nRegresando al menu principal...");
                     }
-
-
 
                     break;
                 case 2:
@@ -90,12 +95,9 @@ public class Main {
                             continuar = sc.nextInt();
                             switch (continuar){
                                 case 1:
-
-                                    System.out.println("posición jugador: "+jugador.getPosicion());
                                     dado.lanzarDado();
                                     int avanzar = dado.getValor();
                                     jugador.moverJugador(avanzar);
-                                    System.out.println("posición jugador: "+jugador.getPosicion());
 
                                     tableroControlador.setPenalizaciones(listaPenalizaciones);
                                     tableroControlador.dibujar(jugador.getPosicion());
@@ -106,13 +108,9 @@ public class Main {
                                     }
 
                                     boolean validarPenalizacion = tableroControlador.getJugadorPenalizacion();
-                                    System.out.println("Valor de jugador en penalizacion: "+validarPenalizacion);
                                     if (validarPenalizacion==true){
-                                        System.out.println("Jugador ce en penalización: "+tableroControlador.getJugadorPenalizacion());
-                                        System.out.println("Jugador ce en penalización: "+tableroControlador.getFilaPenalizacion());
+                                        System.out.println("\n !Has caído en una penalización!");
                                         penalizacionControlador.tipoPenalizacion(tableroControlador.getFilaPenalizacion());
-                                        System.out.println("Posicion jugador actualizado: "+jugador.getPosicion());
-
                                     }
                                     break;
                                 case 2:
