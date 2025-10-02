@@ -16,19 +16,34 @@ public class Main {
         int option;
         int continuar;
         boolean juego_iniciado= true;
-/*
-        //Validar resultados penalizaciones
+
+        //IMRIMIR PENALIZACIONES NIVEL FÁCIL
         PenalizacionFacil penalizacionFacil = new PenalizacionFacil();
-        System.out.println("------------------------------------------------------------");
+        System.out.println("\n------------------------------------------------------------");
+        System.out.println("\n-------- OPCIÓN UNO --------");
         penalizacionFacil.imprimirOpcionUno();
-        System.out.println("------------------------------------------------------------");
+        System.out.println("\n------------------------------------------------------------");
+        System.out.println("\n-------- OPCIÓN DOS --------");
         penalizacionFacil.imprimirOpcionDos();
-        System.out.println("------------------------------------------------------------");
+        System.out.println("\n------------------------------------------------------------");
+        System.out.println("\n-------- OPCIÓN TRES --------");
         penalizacionFacil.imprimirOpcionTres();
+        System.out.println("\n------------------------------------------------------------");
+
+
+
+        //IMPRIMIR PENALIZACIONES NIVEL MEDIO
+        PenalizacionIntermedio penalizacionIntermedio = new PenalizacionIntermedio();
         System.out.println("------------------------------------------------------------");
-
- */
-
+        System.out.println("-------- OPCIÓN UNO --------\n");
+        penalizacionIntermedio.imprimirOpcionUno();
+        System.out.println("------------------------------------------------------------");
+        System.out.println("-------- OPCIÓN DOS --------\n");
+        penalizacionIntermedio.imprimirOpcionDos();
+        System.out.println("------------------------------------------------------------");
+        System.out.println("-------- OPCIÓN TRES --------\n");
+        penalizacionIntermedio.imprimirOpcionTres();
+        System.out.println("------------------------------------------------------------");
 
 
 

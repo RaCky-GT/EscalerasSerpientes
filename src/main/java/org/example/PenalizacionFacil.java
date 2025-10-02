@@ -10,14 +10,17 @@ public class PenalizacionFacil {
         System.out.println("NIVEL FACIL. Ley de cosenos.");
         switch (opcion){
             case 1:
+                System.out.println("-------- OPCIÓN UNO --------\n");
                 imprimirOpcionUno();
                 opcion = 2;
                 break;
             case 2:
+                System.out.println("-------- OPCIÓN DOS --------\n");
                 imprimirOpcionDos();
                 opcion = 3;
                 break;
             case 3:
+                System.out.println("-------- OPCIÓN TRES --------\n");
                 imprimirOpcionTres();
                 opcion = 4;
                 break;
