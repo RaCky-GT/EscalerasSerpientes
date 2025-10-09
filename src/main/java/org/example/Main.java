@@ -17,6 +17,7 @@ public class Main {
         int continuar;
         boolean juego_iniciado= true;
 
+        /*
         //IMRIMIR PENALIZACIONES NIVEL FÁCIL
         PenalizacionFacil penalizacionFacil = new PenalizacionFacil();
         System.out.println("\n------------------------------------------------------------");
@@ -30,8 +31,7 @@ public class Main {
         penalizacionFacil.imprimirOpcionTres();
         System.out.println("\n------------------------------------------------------------");
 
-
-
+*/
         //IMPRIMIR PENALIZACIONES NIVEL MEDIO
         PenalizacionIntermedio penalizacionIntermedio = new PenalizacionIntermedio();
         System.out.println("------------------------------------------------------------");
@@ -44,6 +44,19 @@ public class Main {
         System.out.println("-------- OPCIÓN TRES --------\n");
         penalizacionIntermedio.imprimirOpcionTres();
         System.out.println("------------------------------------------------------------");
+
+        //IMPRIMIR PENALIZACIONES NIVEL DIFICIL
+        PenalizacionDificil penalizacionDificil = new PenalizacionDificil();
+        System.out.println("------------------------------------------------------------");
+        System.out.println("-------- OPCIÓN UNO --------\n");
+        penalizacionDificil.imprimirOpcionUno();
+        System.out.println("\n------------------------------------------------------------");
+        System.out.println("-------- OPCIÓN DOS --------\n");
+        penalizacionDificil.imprimirOpcionDos();
+        System.out.println("\n------------------------------------------------------------");
+        System.out.println("-------- OPCIÓN TRES --------\n");
+        penalizacionDificil.imprimirOpcionTres();
+        System.out.println("------------------------------------------------------------\n");
 
 
 
