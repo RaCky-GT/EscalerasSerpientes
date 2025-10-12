@@ -14,8 +14,6 @@ public class Reportes {
         <head><title>Reporte de Operaciones</title></head>
         <body>
         <h1>REPORTE DE OPERACIONES REALIZADAS</h1>
-        <table border='1'>
-        <tr><th>Operación</th><th>Descripción</th><th>Resultado</th></tr>
         """;
 
         bitacora = """
@@ -69,7 +67,6 @@ public class Reportes {
     public void generarArchivos() {
 
         reporteOperaciones += """
-        </table>
         </body>
         </html>
         """;
