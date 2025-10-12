@@ -4,30 +4,42 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class PenalizacionFacil {
+    private Reportes reportes;
     int opcion= 1;
+
+    public PenalizacionFacil(Reportes reportes){
+        this.reportes = reportes;
+    }
 
     public void imprimirPenalizacion(){
         System.out.println("NIVEL FACIL. Ley de cosenos.");
+        reportes.agregarP("NIVEL FACIL. Ley de cosenos.");
         switch (opcion){
             case 1:
                 System.out.println("-------- OPCIÓN UNO --------\n");
+                reportes.agregarP("-------- OPCIÓN UNO --------");
                 imprimirOpcionUno();
                 opcion = 2;
                 break;
             case 2:
                 System.out.println("-------- OPCIÓN DOS --------\n");
+                reportes.agregarP("-------- OPCIÓN DOS --------");
                 imprimirOpcionDos();
                 opcion = 3;
                 break;
             case 3:
                 System.out.println("-------- OPCIÓN TRES --------\n");
+                reportes.agregarP("-------- OPCIÓN TRES --------");
                 imprimirOpcionTres();
                 opcion = 4;
                 break;
             case 4:
                 System.out.println("Se han completado las penalizaciones del nivel FACIL.\nReanudando juego...");
+                reportes.agregarP("Se han completado las penalizaciones del nivel FACIL.<br>Reanudando juego...");
                 break;
-            default:System.out.println("Algo salio mal en la validacion de ejercicios nivel FACIL");
+            default:
+                System.out.println("Algo salio mal en la validacion de ejercicios nivel FACIL");
+                reportes.agregarP("Algo salio mal en la validacion de ejercicios nivel FACIL");
 
         }
     }
@@ -55,30 +67,36 @@ public class PenalizacionFacil {
         System.out.println("Valores dados:");
         System.out.println("Lado A: 15\nLado C: 20\nAngulo a: 25");
         System.out.println("Resolviendo operación...");
+        reportes.agregarP("Valores dados:<br>Lado A: 15<br>Lado C: 20<br>Angulo a: 25<br>Resolviendo operación...");
         double lado_B = obtenerLado(15,20,25);
         double angulo_b = obtenerAngulo(lado_B,20,15);
         double angulo_y= obtenerAngulo(15,lado_B,20);
         System.out.println(" El lado B es: "+lado_B+"\n El angulo B es: "+angulo_b+"\n El angulo y es: "+ angulo_y);
+        reportes.agregarP(" El lado B es: "+lado_B+"<br> El angulo B es: "+angulo_b+"<br> El angulo y es: "+ angulo_y);
     }
 
     public void imprimirOpcionDos(){
         System.out.println("Valores dados:");
         System.out.println("Lado B: 10\nLado C: 25\nAngulo b: 30");
         System.out.println("Resolviendo operación...");
+        reportes.agregarP("Valores dados:<br>Lado B: 10<br>Lado C: 25<br>Angulo b: 30<br>Resolviendo operación...");
         double lado_A = obtenerLado(10,25,30);
         double angulo_y= obtenerAngulo(10,lado_A,25);
         double angulo_a= obtenerAngulo(lado_A,25,10);
         System.out.println(" El lado A es: "+lado_A+"\n El angulo a es: "+angulo_a+"\n El angulo y es: "+angulo_y);
+        reportes.agregarP(" El lado A es: "+lado_A+"<br> El angulo a es: "+angulo_a+"<br> El angulo y es: "+angulo_y);
     }
 
     public void imprimirOpcionTres(){
         System.out.println("Valores dados:");
         System.out.println("Lado A: 18\nLado B: 25\nAngulo Y: 30");
         System.out.println("Resolviendo operación...");
+        reportes.agregarP("Valores dados:<br>Lado A: 18<br>Lado B: 25<br>Angulo Y: 30<br>Resolviendo operación...");
         double lado_C = obtenerLado(18,25,30);
         double angulo_a=obtenerAngulo(18,lado_C,25);
         double angulo_b=obtenerAngulo(lado_C,25,18);
         System.out.println(" El lado C es: "+lado_C+"\n El angulo a es: "+angulo_a+"\n El angulo b es: "+angulo_b);
+        reportes.agregarP(" El lado C es: "+lado_C+"<br> El angulo a es: "+angulo_a+"<br> El angulo b es: "+angulo_b);
     }
 
 }

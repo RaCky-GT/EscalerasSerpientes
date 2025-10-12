@@ -1,27 +1,40 @@
 package org.example;
 
 public class PenalizacionDificil {
+
+    private Reportes reportes;
     int opcion= 1;
+
+    public PenalizacionDificil(Reportes reportes){
+        this.reportes = reportes;
+    }
 
     public void imprimirPenalizacion(){
         System.out.println("NIVEL DIFICIL. Division de matrices.");
+        reportes.agregarP("NIVEL DIFICIL. Division de matrices.");
         switch (opcion){
             case 1:
                 System.out.println("---------- OPCIÓN UNO -------------\n");
+                reportes.agregarP("---------- OPCIÓN UNO -------------");
                 imprimirOpcionUno();
                 break;
             case 2:
                 System.out.println("---------- OPCIÓN DOS -------------\n");
+                reportes.agregarP("---------- OPCIÓN DOS -------------");
                 imprimirOpcionDos();
                 break;
             case 3:
                 System.out.println("---------- OPCIÓN TRES ------------\n");
+                reportes.agregarP("---------- OPCIÓN TRES ------------");
                 imprimirOpcionTres();
                 break;
             case 4:
                 System.out.println("Se han completado las penalizaciones del nivel DIFICIL.\nReanudando juego...");
+                reportes.agregarP("Se han completado las penalizaciones del nivel DIFICIL.<br>Reanudando juego...");
                 break;
-            default:System.out.println("Algo salio mal en la validacion de ejercicios nivel DIFICIL");
+            default:
+                System.out.println("Algo salio mal en la validacion de ejercicios nivel DIFICIL");
+                reportes.agregarP("Algo salio mal en la validacion de ejercicios nivel DIFICIL");
 
         }
     }
@@ -42,10 +55,13 @@ public class PenalizacionDificil {
         };
 
         System.out.println("    Matriz A");
+        reportes.agregarP("    Matriz A");
         imprimirMatriz(A);
         System.out.println("    Matriz B");
+        reportes.agregarP("    Matriz B");
         imprimirMatriz(B);
         System.out.println("  Matriz A / B");
+        reportes.agregarP("  Matriz A / B");
         dividirMatriz(A,B);
 
         opcion = 2;
@@ -67,10 +83,13 @@ public class PenalizacionDificil {
         };
 
         System.out.println("    Matriz A");
+        reportes.agregarP("    Matriz A");
         imprimirMatriz(A);
         System.out.println("    Matriz B");
+        reportes.agregarP("    Matriz B");
         imprimirMatriz(B);
         System.out.println("  Matriz A / B");
+        reportes.agregarP("  Matriz A / B");
         dividirMatriz(A,B);
 
         opcion = 3;
@@ -92,10 +111,13 @@ public class PenalizacionDificil {
         };
 
         System.out.println("    Matriz A");
+        reportes.agregarP("    Matriz A");
         imprimirMatriz(A);
         System.out.println("    Matriz B");
+        reportes.agregarP("    Matriz B");
         imprimirMatriz(B);
         System.out.println("  Matriz A / B");
+        reportes.agregarP("  Matriz A / B");
         dividirMatriz(A,B);
 
         opcion = 4;
@@ -114,9 +136,11 @@ public class PenalizacionDificil {
                 imprimirMatriz(A_inversaB);
             }else {
                 System.out.println("La determinante de la matriz B es 0, no se puede realizar operación, regresando al juego... "+determinante);
+                reportes.agregarP("La determinante de la matriz B es 0, no se puede realizar operación, regresando al juego... "+String.valueOf(determinante));
             }
         } else {
             System.out.println("No se puede ejecutar la operación, regresando al juego...");
+            reportes.agregarP("No se puede ejecutar la operación, regresando al juego...");
         }
 
 
@@ -131,12 +155,14 @@ public class PenalizacionDificil {
 
         if (filas_A != filas_B || columnas_A != columnas_B) {
             System.out.println("Las matrices no cuentan con la misma longitud.");
+            reportes.agregarP("Las matrices no cuentan con la misma longitud.");
             return false;
         }
 
 
         if (filas_A != columnas_A) {
             System.out.println("La matriz A no es cuadrada.");
+            reportes.agregarP("La matriz A no es cuadrada.");
             return false;
         }
 
@@ -144,6 +170,7 @@ public class PenalizacionDificil {
             for (int j = 0; j < columnas_A; j++) {
                 if (A[i][j] == 0) {
                     System.out.println("La matriz A cuenta con un valor 0.");
+                    reportes.agregarP("La matriz A cuenta con un valor 0.");
                     return false;
                 }
             }
@@ -151,6 +178,7 @@ public class PenalizacionDificil {
 
         if (filas_B != columnas_B) {
             System.out.println("La matriz B no es cuadrada.");
+            reportes.agregarP("La matriz B no es cuadrada.");
             return false;
         }
 
@@ -158,6 +186,7 @@ public class PenalizacionDificil {
             for (int j = 0; j < columnas_B; j++) {
                 if (B[i][j] == 0) {
                     System.out.println("La matriz B cuenta con un valor 0.");
+                    reportes.agregarP("La matriz B cuenta con un valor 0.");
                     return false;
                 }
             }
@@ -223,6 +252,7 @@ public class PenalizacionDificil {
             // Verificar pivote distinto de 0
             double pivote = a[i][i];
             if (pivote == 0) {
+                reportes.agregarP("La matriz no es invertible (pivote 0 encontrado).");
                 throw new IllegalArgumentException("La matriz no es invertible (pivote 0 encontrado).");
             }
 
@@ -264,10 +294,11 @@ public class PenalizacionDificil {
 
 
 
-    public static void imprimirMatriz(double [][] matriz){
+    public void imprimirMatriz(double [][] matriz){
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 System.out.printf("%-10.3f",matriz[i][j]);
+                reportes.agregarA(String.valueOf(matriz[i][j]));
             }
             System.out.println();
         }

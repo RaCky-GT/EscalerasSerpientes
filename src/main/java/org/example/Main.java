@@ -5,60 +5,19 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        TableroControlador tableroControlador = new TableroControlador();
+        Reportes reportes = new Reportes();
+        TableroControlador tableroControlador = new TableroControlador(reportes);
+        PenalizacionControlador penalizacionControlador = new PenalizacionControlador(reportes);
+        Dado dado = new Dado(reportes);
         Jugador jugador = new Jugador();
-        Dado dado = new Dado();
-        PenalizacionControlador penalizacionControlador = new PenalizacionControlador();
-        penalizacionControlador.distribucinPenalizaciones();
+        penalizacionControlador.distribucionPenalizaciones();
+
+        Scanner sc = new Scanner(System.in);
         int [] listaPenalizaciones = penalizacionControlador.getPenalizaciones();
 
         int option;
         int continuar;
         boolean juego_iniciado= true;
-
-        /*
-        //IMRIMIR PENALIZACIONES NIVEL FÁCIL
-        PenalizacionFacil penalizacionFacil = new PenalizacionFacil();
-        System.out.println("\n------------------------------------------------------------");
-        System.out.println("\n-------- OPCIÓN UNO --------");
-        penalizacionFacil.imprimirOpcionUno();
-        System.out.println("\n------------------------------------------------------------");
-        System.out.println("\n-------- OPCIÓN DOS --------");
-        penalizacionFacil.imprimirOpcionDos();
-        System.out.println("\n------------------------------------------------------------");
-        System.out.println("\n-------- OPCIÓN TRES --------");
-        penalizacionFacil.imprimirOpcionTres();
-        System.out.println("\n------------------------------------------------------------");
-
-*/
-        //IMPRIMIR PENALIZACIONES NIVEL MEDIO
-        PenalizacionIntermedio penalizacionIntermedio = new PenalizacionIntermedio();
-        System.out.println("------------------------------------------------------------");
-        System.out.println("-------- OPCIÓN UNO --------\n");
-        penalizacionIntermedio.imprimirOpcionUno();
-        System.out.println("------------------------------------------------------------");
-        System.out.println("-------- OPCIÓN DOS --------\n");
-        penalizacionIntermedio.imprimirOpcionDos();
-        System.out.println("------------------------------------------------------------");
-        System.out.println("-------- OPCIÓN TRES --------\n");
-        penalizacionIntermedio.imprimirOpcionTres();
-        System.out.println("------------------------------------------------------------");
-
-        //IMPRIMIR PENALIZACIONES NIVEL DIFICIL
-        PenalizacionDificil penalizacionDificil = new PenalizacionDificil();
-        System.out.println("------------------------------------------------------------");
-        System.out.println("-------- OPCIÓN UNO --------\n");
-        penalizacionDificil.imprimirOpcionUno();
-        System.out.println("\n------------------------------------------------------------");
-        System.out.println("-------- OPCIÓN DOS --------\n");
-        penalizacionDificil.imprimirOpcionDos();
-        System.out.println("\n------------------------------------------------------------");
-        System.out.println("-------- OPCIÓN TRES --------\n");
-        penalizacionDificil.imprimirOpcionTres();
-        System.out.println("------------------------------------------------------------\n");
-
-
 
         do{
             System.out.println("======== MENU ========");
@@ -67,7 +26,7 @@ public class Main {
             System.out.println(" 3. Generar Reportes");
             System.out.println(" 4. Salir");
             option = sc.nextInt();
-
+            reportes.menuPrincipal(String.valueOf(option));
 
             switch (option){
                 case 1:
@@ -78,10 +37,13 @@ public class Main {
                             System.out.println(" 1. Sí, lanzar dado.");
                             System.out.println(" 2. No, regresar a menu principal.\n");
                             continuar = sc.nextInt();
+                            reportes.subMenu(String.valueOf(continuar));
+
                             switch (continuar){
                                 case 1:
 
                                     System.out.println("posición jugador: "+jugador.getPosicion());
+                                    reportes.agregarP("Posición jugador: "+String.valueOf(jugador.getPosicion()));
                                     dado.lanzarDado();
                                     int avanzar = dado.getValor();
                                     jugador.moverJugador(avanzar);
@@ -90,6 +52,7 @@ public class Main {
                                     tableroControlador.dibujar(jugador.getPosicion());
                                     if(jugador.getPosicion()>=64){
                                         System.out.println("\n¡Felicidades Ganaste! El juego ha finalizado.\nSaliendo del juego...");
+                                        reportes.agregarP("¡Felicidades Ganaste! El juego ha finalizado.<br>Saliendo del juego...");
                                         System.exit(0);
 
                                     }
@@ -101,6 +64,7 @@ public class Main {
                                     break;
                                 case 2:
                                     System.out.println("Regresando al menu principal...\n");
+                                    reportes.agregarP("Regresando al menu principal...");
                                     break;
                             }
 
@@ -109,6 +73,7 @@ public class Main {
                         juego_iniciado = false;
                     }else {
                         System.out.println("Se cuenta con un juego iniciado.\nRegresando al menu principal...");
+                        reportes.agregarP("Se cuenta con un juego iniciado.<br>Regresando al menu principal...");
                     }
 
                     break;
@@ -121,6 +86,7 @@ public class Main {
                             System.out.println(" 1. Sí, lanzar dado.");
                             System.out.println(" 2. No, regresar a menu principal.\n");
                             continuar = sc.nextInt();
+                            reportes.subMenu(String.valueOf(continuar));
                             switch (continuar){
                                 case 1:
                                     dado.lanzarDado();
@@ -131,6 +97,8 @@ public class Main {
                                     tableroControlador.dibujar(jugador.getPosicion());
                                     if(jugador.getPosicion()>=64){
                                         System.out.println("\n¡Felicidades Ganaste! El juego ha finalizado.\nSaliendo del juego...");
+                                        reportes.agregarP("¡Felicidades Ganaste! El juego ha finalizado.<br>Saliendo del juego...");
+                                        reportes.generarArchivos();
                                         System.exit(0);
 
                                     }
@@ -138,11 +106,13 @@ public class Main {
                                     boolean validarPenalizacion = tableroControlador.getJugadorPenalizacion();
                                     if (validarPenalizacion==true){
                                         System.out.println("\n !Has caído en una penalización!");
+                                        reportes.agregarP("!Has caído en una penalización!");
                                         penalizacionControlador.tipoPenalizacion(tableroControlador.getFilaPenalizacion());
                                     }
                                     break;
                                 case 2:
                                     System.out.println("Regresando al menu principal...\n");
+                                    reportes.agregarP("Regresando al menu principal...");
                                     break;
                             }
 
@@ -150,16 +120,20 @@ public class Main {
                         }while (continuar!=2);
                     }else {
                         System.out.println("No se cuenta con un juego iniciado.\nRegresando al menu principal...");
+                        reportes.agregarP("No se cuenta con un juego iniciado.<br>Regresando al menu principal...");
                     }
 
                     break ;
                 case 3:
+                    System.out.println("Generando reportes...");
+                    reportes.generarArchivos();
+                    System.out.println("Repoertes generados.");
                     break ;
                 case 4:
                     System.out.println("¡QUE TE HAYAS DIVERTIDO!");
                     break ;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + option);
+                    throw new IllegalStateException("Valor ingresado no definido entre las opciones: " + option);
             }
 
         }while (option!=4);
