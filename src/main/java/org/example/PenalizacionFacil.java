@@ -5,6 +5,9 @@ import java.text.DecimalFormat;
 
 public class PenalizacionFacil {
     private Reportes reportes;
+    private String nivel_penalizacion = "NIVEL FACIL. Ley de cosenos.";
+    private String opcion_penalizacion;
+    private String penalizacion_texto;
     int opcion= 1;
 
     public PenalizacionFacil(Reportes reportes){
@@ -12,25 +15,32 @@ public class PenalizacionFacil {
     }
 
     public void imprimirPenalizacion(){
-        System.out.println("NIVEL FACIL. Ley de cosenos.");
-        reportes.agregarP("NIVEL FACIL. Ley de cosenos.");
+        System.out.println("\n ¡Has caído en una penalización!\n NIVEL FACIL. Ley de cosenos.");
+        reportes.agregarP("<br>¡Has caído en una penalización!<br>NIVEL FACIL. Ley de cosenos.");
+
         switch (opcion){
             case 1:
                 System.out.println("-------- OPCIÓN UNO --------\n");
                 reportes.agregarP("-------- OPCIÓN UNO --------");
+                opcion_penalizacion = "-------- OPCIÓN UNO --------";
                 imprimirOpcionUno();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 opcion = 2;
                 break;
             case 2:
                 System.out.println("-------- OPCIÓN DOS --------\n");
                 reportes.agregarP("-------- OPCIÓN DOS --------");
+                opcion_penalizacion = "-------- OPCIÓN DOS --------";
                 imprimirOpcionDos();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 opcion = 3;
                 break;
             case 3:
                 System.out.println("-------- OPCIÓN TRES --------\n");
                 reportes.agregarP("-------- OPCIÓN TRES --------");
+                opcion_penalizacion= "-------- OPCIÓN TRES --------";
                 imprimirOpcionTres();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 opcion = 4;
                 break;
             case 4:
@@ -64,39 +74,33 @@ public class PenalizacionFacil {
 
 
     public void imprimirOpcionUno(){
-        System.out.println("Valores dados:");
-        System.out.println("Lado A: 15\nLado C: 20\nAngulo a: 25");
-        System.out.println("Resolviendo operación...");
-        reportes.agregarP("Valores dados:<br>Lado A: 15<br>Lado C: 20<br>Angulo a: 25<br>Resolviendo operación...");
+        System.out.println("Valores dados:\nLado A: 15\nLado C: 20\nAngulo a: 25\nResolviendo operación...");
         double lado_B = obtenerLado(15,20,25);
         double angulo_b = obtenerAngulo(lado_B,20,15);
         double angulo_y= obtenerAngulo(15,lado_B,20);
         System.out.println(" El lado B es: "+lado_B+"\n El angulo B es: "+angulo_b+"\n El angulo y es: "+ angulo_y);
-        reportes.agregarP(" El lado B es: "+lado_B+"<br> El angulo B es: "+angulo_b+"<br> El angulo y es: "+ angulo_y);
+        reportes.agregarP("Valores dados:<br>Lado A: 15<br>Lado C: 20<br>Angulo a: 25<br>Resolviendo operación...<br>El lado B es: "+lado_B+"<br> El angulo B es: "+angulo_b+"<br> El angulo y es: "+ angulo_y);
+        penalizacion_texto = "<h4>Valores dados:</h4><p>Lado A: 15<br>Lado C: 20<br>Angulo a: 25<br>Resolviendo operación...</p>"+"<p> El lado B es: "+lado_B+"<br> El angulo B es: "+angulo_b+"<br> El angulo y es: "+ angulo_y+"</p>";
     }
 
     public void imprimirOpcionDos(){
-        System.out.println("Valores dados:");
-        System.out.println("Lado B: 10\nLado C: 25\nAngulo b: 30");
-        System.out.println("Resolviendo operación...");
-        reportes.agregarP("Valores dados:<br>Lado B: 10<br>Lado C: 25<br>Angulo b: 30<br>Resolviendo operación...");
+        System.out.println("Valores dados:\nLado B: 10\nLado C: 25\nAngulo b: 30\nResolviendo operación...");
         double lado_A = obtenerLado(10,25,30);
         double angulo_y= obtenerAngulo(10,lado_A,25);
         double angulo_a= obtenerAngulo(lado_A,25,10);
         System.out.println(" El lado A es: "+lado_A+"\n El angulo a es: "+angulo_a+"\n El angulo y es: "+angulo_y);
-        reportes.agregarP(" El lado A es: "+lado_A+"<br> El angulo a es: "+angulo_a+"<br> El angulo y es: "+angulo_y);
+        reportes.agregarP("Valores dados:<br>Lado B: 10<br>Lado C: 25<br>Angulo b: 30<br>Resolviendo operación...<br> El lado A es: "+lado_A+"<br> El angulo a es: "+angulo_a+"<br> El angulo y es: "+angulo_y);
+        penalizacion_texto="<h4>Valores dados:</h4><p>Lado B: 10<br>Lado C: 25<br>Angulo b: 30<br>Resolviendo operación...</p>"+"<p> El lado A es: "+lado_A+"<br> El angulo a es: "+angulo_a+"<br> El angulo y es: "+angulo_y+"</P>";
     }
 
     public void imprimirOpcionTres(){
-        System.out.println("Valores dados:");
-        System.out.println("Lado A: 18\nLado B: 25\nAngulo Y: 30");
-        System.out.println("Resolviendo operación...");
-        reportes.agregarP("Valores dados:<br>Lado A: 18<br>Lado B: 25<br>Angulo Y: 30<br>Resolviendo operación...");
+        System.out.println("Valores dados:\nLado A: 18\nLado B: 25\nAngulo Y: 30\nResolviendo operación...");
         double lado_C = obtenerLado(18,25,30);
         double angulo_a=obtenerAngulo(18,lado_C,25);
         double angulo_b=obtenerAngulo(lado_C,25,18);
         System.out.println(" El lado C es: "+lado_C+"\n El angulo a es: "+angulo_a+"\n El angulo b es: "+angulo_b);
-        reportes.agregarP(" El lado C es: "+lado_C+"<br> El angulo a es: "+angulo_a+"<br> El angulo b es: "+angulo_b);
+        reportes.agregarP("Valores dados:<br>Lado A: 18<br>Lado B: 25<br>Angulo Y: 30<br>Resolviendo operación...<br>El lado C es: "+lado_C+"<br> El angulo a es: "+angulo_a+"<br> El angulo b es: "+angulo_b);
+        penalizacion_texto="<h4>Valores dados:</h4><p>Lado A: 18<br>Lado B: 25<br>Angulo Y: 30<br>Resolviendo operación...<br>El lado C es: "+lado_C+"<br>El angulo a es: "+angulo_a+"<br> El angulo b es: "+angulo_b+"</p>";
     }
 
 }

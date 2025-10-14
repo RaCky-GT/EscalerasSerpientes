@@ -53,6 +53,7 @@ public class Main {
                                     if(jugador.getPosicion()>=64){
                                         System.out.println("\n¡Felicidades Ganaste! El juego ha finalizado.\nSaliendo del juego...");
                                         reportes.agregarP("¡Felicidades Ganaste! El juego ha finalizado.<br>Saliendo del juego...");
+                                        reportes.generarArchivos();
                                         System.exit(0);
 
                                     }
@@ -99,14 +100,13 @@ public class Main {
                                         System.out.println("\n¡Felicidades Ganaste! El juego ha finalizado.\nSaliendo del juego...");
                                         reportes.agregarP("¡Felicidades Ganaste! El juego ha finalizado.<br>Saliendo del juego...");
                                         reportes.generarArchivos();
+                                        reportes.generarArchivos();
                                         System.exit(0);
 
                                     }
 
                                     boolean validarPenalizacion = tableroControlador.getJugadorPenalizacion();
                                     if (validarPenalizacion==true){
-                                        System.out.println("\n !Has caído en una penalización!");
-                                        reportes.agregarP("!Has caído en una penalización!");
                                         penalizacionControlador.tipoPenalizacion(tableroControlador.getFilaPenalizacion());
                                     }
                                     break;

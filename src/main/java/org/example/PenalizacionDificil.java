@@ -3,6 +3,9 @@ package org.example;
 public class PenalizacionDificil {
 
     private Reportes reportes;
+    private String nivel_penalizacion = "NIVEL DIFICIL. Division de matrices";
+    private String opcion_penalizacion;
+    private String penalizacion_texto;
     int opcion= 1;
 
     public PenalizacionDificil(Reportes reportes){
@@ -10,23 +13,29 @@ public class PenalizacionDificil {
     }
 
     public void imprimirPenalizacion(){
-        System.out.println("NIVEL DIFICIL. Division de matrices.");
-        reportes.agregarP("NIVEL DIFICIL. Division de matrices.");
+        System.out.println("\n ¡Has caído en una penalización!\n NIVEL DIFICIL. Division de matrices");
+        reportes.agregarP("<br>¡Has caído en una penalización!<br>NIVEL DIFICIL. Division de matrices.");
         switch (opcion){
             case 1:
                 System.out.println("---------- OPCIÓN UNO -------------\n");
                 reportes.agregarP("---------- OPCIÓN UNO -------------");
+                opcion_penalizacion="---------- OPCIÓN UNO -------------";
                 imprimirOpcionUno();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 break;
             case 2:
                 System.out.println("---------- OPCIÓN DOS -------------\n");
                 reportes.agregarP("---------- OPCIÓN DOS -------------");
+                opcion_penalizacion="---------- OPCIÓN DOS -------------";
                 imprimirOpcionDos();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 break;
             case 3:
                 System.out.println("---------- OPCIÓN TRES ------------\n");
                 reportes.agregarP("---------- OPCIÓN TRES ------------");
+                opcion_penalizacion="---------- OPCIÓN TRES ------------";
                 imprimirOpcionTres();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 break;
             case 4:
                 System.out.println("Se han completado las penalizaciones del nivel DIFICIL.\nReanudando juego...");
@@ -35,11 +44,13 @@ public class PenalizacionDificil {
             default:
                 System.out.println("Algo salio mal en la validacion de ejercicios nivel DIFICIL");
                 reportes.agregarP("Algo salio mal en la validacion de ejercicios nivel DIFICIL");
+                penalizacion_texto+="Algo salio mal en la validacion de ejercicios nivel DIFICIL";
 
         }
     }
 
     public void imprimirOpcionUno(){
+        penalizacion_texto="";
         double[][] A = {
                 {5, 10, 1, 3},
                 {9, 14, 2, 6},
@@ -56,18 +67,22 @@ public class PenalizacionDificil {
 
         System.out.println("    Matriz A");
         reportes.agregarP("    Matriz A");
+        penalizacion_texto+="<h4>    Matriz A</h4>";
         imprimirMatriz(A);
         System.out.println("    Matriz B");
         reportes.agregarP("    Matriz B");
+        penalizacion_texto+="<h4>    Matriz B</h4>";
         imprimirMatriz(B);
         System.out.println("  Matriz A / B");
         reportes.agregarP("  Matriz A / B");
+        penalizacion_texto+="<h4>  Matriz A / B</h4>";
         dividirMatriz(A,B);
 
         opcion = 2;
     }
 
     public void imprimirOpcionDos(){
+        penalizacion_texto="";
         double[][] A = {
                 {1, 12, 9, 8},
                 {7, 6, 3, 2},
@@ -84,18 +99,22 @@ public class PenalizacionDificil {
 
         System.out.println("    Matriz A");
         reportes.agregarP("    Matriz A");
+        penalizacion_texto+="<h4>    Matriz A</h4>";
         imprimirMatriz(A);
         System.out.println("    Matriz B");
         reportes.agregarP("    Matriz B");
+        penalizacion_texto+="<h4>    Matriz B</h4>";
         imprimirMatriz(B);
         System.out.println("  Matriz A / B");
         reportes.agregarP("  Matriz A / B");
+        penalizacion_texto+="<h4>  Matriz A / B</h4>";
         dividirMatriz(A,B);
 
         opcion = 3;
     }
 
     public void imprimirOpcionTres(){
+        penalizacion_texto="";
         double[][] A = {
                 {5, 9, 14, 5},
                 {6, 0, 5, 3},
@@ -112,12 +131,15 @@ public class PenalizacionDificil {
 
         System.out.println("    Matriz A");
         reportes.agregarP("    Matriz A");
+        penalizacion_texto+="<h4>    Matriz A</h4>";
         imprimirMatriz(A);
         System.out.println("    Matriz B");
         reportes.agregarP("    Matriz B");
+        penalizacion_texto+="<h4>    Matriz B</h4>";
         imprimirMatriz(B);
         System.out.println("  Matriz A / B");
         reportes.agregarP("  Matriz A / B");
+        penalizacion_texto+="<h4>  Matriz A / B</h4>";
         dividirMatriz(A,B);
 
         opcion = 4;
@@ -137,10 +159,12 @@ public class PenalizacionDificil {
             }else {
                 System.out.println("La determinante de la matriz B es 0, no se puede realizar operación, regresando al juego... "+determinante);
                 reportes.agregarP("La determinante de la matriz B es 0, no se puede realizar operación, regresando al juego... "+String.valueOf(determinante));
+                penalizacion_texto+="<p>La determinante de la matriz B es 0, no se puede realizar operación, regresando al juego... </p>";
             }
         } else {
             System.out.println("No se puede ejecutar la operación, regresando al juego...");
             reportes.agregarP("No se puede ejecutar la operación, regresando al juego...");
+            penalizacion_texto+="<p>No se puede ejecutar la operación, regresando al juego...</P>";
         }
 
 
@@ -156,6 +180,7 @@ public class PenalizacionDificil {
         if (filas_A != filas_B || columnas_A != columnas_B) {
             System.out.println("Las matrices no cuentan con la misma longitud.");
             reportes.agregarP("Las matrices no cuentan con la misma longitud.");
+            penalizacion_texto+="<p>Las matrices no cuentan con la misma longitud.</p>";
             return false;
         }
 
@@ -163,6 +188,7 @@ public class PenalizacionDificil {
         if (filas_A != columnas_A) {
             System.out.println("La matriz A no es cuadrada.");
             reportes.agregarP("La matriz A no es cuadrada.");
+            penalizacion_texto+="<p>La matriz A no es cuadrada.</p>";
             return false;
         }
 
@@ -171,6 +197,7 @@ public class PenalizacionDificil {
                 if (A[i][j] == 0) {
                     System.out.println("La matriz A cuenta con un valor 0.");
                     reportes.agregarP("La matriz A cuenta con un valor 0.");
+                    penalizacion_texto+="<p>La matriz A cuenta con un valor 0.</p>";
                     return false;
                 }
             }
@@ -179,6 +206,7 @@ public class PenalizacionDificil {
         if (filas_B != columnas_B) {
             System.out.println("La matriz B no es cuadrada.");
             reportes.agregarP("La matriz B no es cuadrada.");
+            penalizacion_texto+="La matriz B no es cuadrada.";
             return false;
         }
 
@@ -187,6 +215,7 @@ public class PenalizacionDificil {
                 if (B[i][j] == 0) {
                     System.out.println("La matriz B cuenta con un valor 0.");
                     reportes.agregarP("La matriz B cuenta con un valor 0.");
+                    penalizacion_texto+="La matriz B cuenta con un valor 0.";
                     return false;
                 }
             }
@@ -253,6 +282,7 @@ public class PenalizacionDificil {
             double pivote = a[i][i];
             if (pivote == 0) {
                 reportes.agregarP("La matriz no es invertible (pivote 0 encontrado).");
+                penalizacion_texto+="<p>La matriz no es invertible (pivote 0 encontrado).</p>";
                 throw new IllegalArgumentException("La matriz no es invertible (pivote 0 encontrado).");
             }
 
@@ -298,11 +328,16 @@ public class PenalizacionDificil {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 System.out.printf("%-10.3f",matriz[i][j]);
-                reportes.agregarA(String.valueOf(matriz[i][j]));
+                reportes.agregarA(String.valueOf(matriz[i][j])+"  |  ");
+                penalizacion_texto+="<a>"+matriz[i][j]+"  |  "+"</a>";
             }
             System.out.println();
+            reportes.agregarP("");
+            penalizacion_texto+="<br>";
         }
         System.out.println();
+        reportes.agregarP("");
+        penalizacion_texto+="<br>";
     }
 
 

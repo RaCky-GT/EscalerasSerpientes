@@ -6,6 +6,8 @@ import java.io.IOException;
 public class Reportes {
     private String reporteOperaciones;
     private String bitacora;
+    private String[] ultimasPenalizaciones = new String[3];
+    private int contadorPenalizaciones = 0;
 
     public Reportes() {
 
@@ -13,7 +15,7 @@ public class Reportes {
         <html>
         <head><title>Reporte de Operaciones</title></head>
         <body>
-        <h1>REPORTE DE OPERACIONES REALIZADAS</h1>
+        <h1>REPORTE DE OPERACIONES REALIZADAS JUEGO ESCALERAS Y SERPIENTES</h1>
         """;
 
         bitacora = """
@@ -35,8 +37,8 @@ public class Reportes {
                         <li>Salir</li>
                     </ol>
                 """+"<p>Opcion seleccionada por el usuario: "+texto+ """
-                <p>
-                <div>
+                </p>
+                </div>
                 """;
     }
 
@@ -49,22 +51,43 @@ public class Reportes {
                         <li>No, regresar a menu principal.</li>
                     </ol>
                 """+"<p>Opcion seleccionada por el usuario: "+texto+ """
-                <p>
-                <div>
+                </p>
+                </div>
                 """;
     }
 
-
     public void agregarP(String texto){
-        bitacora +="<p>" + texto + "<p>";
+        bitacora +="<p>" + texto + "</p>";
     }
 
     public void agregarA(String texto){
-        bitacora +="<a>" + texto + "<a>";
+        bitacora +="<a>" + texto + "</a>";
     }
 
 
+    public void penalizacionReporte(String nivel_penalizacion, String opcion_penalizacion, String penalizacion){
+        String penalizacion_reporte = """
+                <div>
+                    <h2>¡Has caído en una penalización!<br>"""+nivel_penalizacion+ "</h2>"+
+                    "<h3>"+opcion_penalizacion+"</h3>"+ penalizacion+"</div>";
+
+        if (contadorPenalizaciones < 3) {
+            ultimasPenalizaciones[contadorPenalizaciones] = penalizacion_reporte;
+            contadorPenalizaciones++;
+        } else {
+            for (int i = 0; i < 2; i++) {
+                ultimasPenalizaciones[i] = ultimasPenalizaciones[i + 1];
+            }
+            ultimasPenalizaciones[2] = penalizacion_reporte;
+        }
+    }
+
     public void generarArchivos() {
+        for (int i = 0; i < contadorPenalizaciones; i++) {
+            if (ultimasPenalizaciones[i] != null) {
+                reporteOperaciones += ultimasPenalizaciones[i] + "\n";
+            }
+        }
 
         reporteOperaciones += """
         </body>
