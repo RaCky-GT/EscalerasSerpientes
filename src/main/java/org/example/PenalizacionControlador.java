@@ -3,16 +3,27 @@ package org.example;
 import java.util.Random;
 
 public class PenalizacionControlador {
-    PenalizacionFacil penalizacionFacil = new PenalizacionFacil();
-    PenalizacionIntermedio penalizacionIntermedio = new PenalizacionIntermedio();
-    PenalizacionDificil penalizacionDificil = new PenalizacionDificil();
+    private PenalizacionFacil penalizacionFacil;
+    private PenalizacionIntermedio penalizacionIntermedio;
+    private PenalizacionDificil penalizacionDificil;
+
+    private Reportes reportes;
 
     int [] dist_penalizaciones = new int[32];
     int min=0;
     int max=8;
     int cont=0;
 
-    public void distribucinPenalizaciones(){
+    public PenalizacionControlador(Reportes reportes){
+        this.reportes = reportes;
+
+        penalizacionFacil = new PenalizacionFacil(reportes);
+        penalizacionIntermedio = new PenalizacionIntermedio(reportes);
+        penalizacionDificil = new PenalizacionDificil(reportes);
+
+    }
+
+    public void distribucionPenalizaciones(){
         Random  random = new Random();
 
         for(int i=0; i<=7;i++){

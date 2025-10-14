@@ -1,42 +1,70 @@
 package org.example;
 
 public class PenalizacionIntermedio {
+    private Reportes reportes;
+    private String nivel_penalizacion = "NIVEL INTERMEDIO. Suma de matrices.";
+    private String opcion_penalizacion;
+    private String penalizacion_texto;
     int opcion= 1;
 
+    public PenalizacionIntermedio(Reportes reportes){
+        this.reportes = reportes;
+    }
+
     public void imprimirPenalizacion(){
-        System.out.println("NIVEL INTERMEDIO. Suma de matrices.");
+        System.out.println("\n ¡Has caído en una penalización!\n NIVEL INTERMEDIO. Suma de matrices.");
+        reportes.agregarP("<br>¡Has caído en una penalización!<br>NIVEL INTERMEDIO. Suma de matrices.");
         switch (opcion){
             case 1:
                 System.out.println("---------- OPCIÓN UNO -------------\n");
+                reportes.agregarP("---------- OPCIÓN UNO -------------");
+                opcion_penalizacion = "-------- OPCIÓN UNO --------";
                 imprimirOpcionUno();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 break;
             case 2:
                 System.out.println("---------- OPCIÓN DOS -------------\n");
+                reportes.agregarP("---------- OPCIÓN DOS -------------");
+                opcion_penalizacion = "---------- OPCIÓN DOS -------------";
                 imprimirOpcionDos();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 break;
             case 3:
                 System.out.println("---------- OPCIÓN TRES ------------\n");
+                reportes.agregarP("---------- OPCIÓN TRES -------------");
+                opcion_penalizacion = "---------- OPCIÓN TRES -------------";
                 imprimirOpcionTres();
+                reportes.penalizacionReporte(nivel_penalizacion,opcion_penalizacion,penalizacion_texto);
                 break;
             case 4:
                 System.out.println("Se han completado las penalizaciones del nivel INTERMEDIO.\nReanudando juego...");
+                reportes.agregarP("Se han completado las penalizaciones del nivel INTERMEDIO.<br>Reanudando juego...");
                 break;
-            default:System.out.println("Algo salio mal en la validacion de ejercicios nivel INTERMEDIO");
+            default:
+                System.out.println("Algo salio mal en la validacion de ejercicios nivel INTERMEDIO");
+                reportes.agregarP("Algo salio mal en la validacion de ejercicios nivel INTERMEDIO");
+                penalizacion_texto+="Algo salio mal en la validacion de ejercicios nivel INTERMEDIO";
 
         }
     }
 
-    public static void imprimirMatriz(int [][] matriz){
+    public void imprimirMatriz(int [][] matriz){
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 System.out.printf("%-5s",matriz[i][j]);
+                reportes.agregarA(matriz[i][j]+"  |  ");
+                penalizacion_texto+="<a>"+matriz[i][j]+"  |  "+"</a>";
             }
             System.out.println();
+            reportes.agregarA("<br>");
+            penalizacion_texto+="<br>";
         }
         System.out.println();
+        reportes.agregarA("<br>");
+        penalizacion_texto+="<br>";
     }
 
-    public static void sumaMatrices(int [][] A, int [][]  B){
+    public void sumaMatrices(int [][] A, int [][]  B){
         int [][] suma = new int[5][5];
 
         for (int i = 0; i < A.length; i++) {
@@ -48,7 +76,7 @@ public class PenalizacionIntermedio {
     }
 
     public void imprimirOpcionUno(){
-
+        penalizacion_texto="";
         int[][] A = {
                 {7, 48, 5, 0, 1},
                 {57, 8, 4, 6, 14},
@@ -66,16 +94,23 @@ public class PenalizacionIntermedio {
         };
 
         System.out.println("    Matriz A");
+        reportes.agregarP("    Matriz A");
+        penalizacion_texto+="<h4>    Matriz A</h4>";
         imprimirMatriz(A);
         System.out.println("    Matriz B");
+        reportes.agregarP("    Matriz B");
+        penalizacion_texto+="<h4>    Matriz B</h4>";
         imprimirMatriz(B);
         System.out.println("  Matriz A + B");
+        reportes.agregarP("  Matriz A + B");
+        penalizacion_texto+="<h4>  Matriz A + B</h4>";
         sumaMatrices(A,B);
 
         opcion = 2;
     }
 
     public void imprimirOpcionDos(){
+        penalizacion_texto="";
         int[][] A = {
                 {4, 9, 7, 45, 18},
                 {7, 51, 26, 8, 38},
@@ -93,16 +128,23 @@ public class PenalizacionIntermedio {
         };
 
         System.out.println("    Matriz A");
+        reportes.agregarP("    Matriz A");
+        penalizacion_texto+="<h4>    Matriz A</h4>";
         imprimirMatriz(A);
         System.out.println("    Matriz B");
+        reportes.agregarP("    Matriz B");
+        penalizacion_texto+="<h4>    Matriz B</h4>";
         imprimirMatriz(B);
         System.out.println("  Matriz A + B");
+        reportes.agregarP("  Matriz A + B");
+        penalizacion_texto+="<h4>  Matriz A + B</h4>";
         sumaMatrices(A,B);
 
         opcion = 3;
     }
 
     public void imprimirOpcionTres(){
+        penalizacion_texto="";
         int[][] A = {
                 {0, 1, 15, 5, 36},
                 {1, 78, 65, 32, 4},
@@ -120,10 +162,16 @@ public class PenalizacionIntermedio {
         };
 
         System.out.println("    Matriz A");
+        reportes.agregarP("    Matriz A");
+        penalizacion_texto+="<h4>    Matriz A</h4>";
         imprimirMatriz(A);
         System.out.println("    Matriz B");
+        reportes.agregarP("    Matriz B");
+        penalizacion_texto+="<h4>    Matriz B</h4>";
         imprimirMatriz(B);
         System.out.println("  Matriz A + B");
+        reportes.agregarP("  Matriz A + B");
+        penalizacion_texto+="<h4>  Matriz A + B</h4>";
         sumaMatrices(A,B);
 
         opcion = 4;
