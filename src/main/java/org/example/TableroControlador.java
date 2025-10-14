@@ -1,9 +1,14 @@
 package org.example;
 
 public class TableroControlador {
+    private Reportes reportes;
     private int[] penalizaciones;
     boolean jugadorPenalizacion = false;
     int filaPenalizacion =0;
+
+    public TableroControlador(Reportes reportes){
+        this.reportes = reportes;
+    }
 
     public void setPenalizaciones(int[] penalizaciones) {
         this.penalizaciones = penalizaciones;
@@ -14,6 +19,7 @@ public class TableroControlador {
         jugadorPenalizacion = false;
 
         System.out.println("---------------------------------------------------------");
+        reportes.agregarP("-------------------------------------");
         for (int fila = 7; fila >= 0; fila--) {
             int inicioFila = fila * 8 + 1;
 
@@ -31,6 +37,8 @@ public class TableroControlador {
 
             System.out.println("|");
             System.out.println("---------------------------------------------------------");
+            reportes.agregarA("|");
+            reportes.agregarP("-------------------------------------");
         }
     }
 
@@ -58,6 +66,7 @@ public class TableroControlador {
         }
 
         System.out.printf("|%-6s", casilla);
+        reportes.agregarA("|"+casilla);
 
     }
 
